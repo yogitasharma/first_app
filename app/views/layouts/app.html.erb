@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testapp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ <div style="height: 70px;background: linear-gradient(#123348,#153343);">
+	<% if !member_signed_in?%> 
+	<%= link_to 'LOGIN', new_member_session_path ,:class=> 'btn btncls logcls'%>
+    <%= link_to 'SIGNUP', new_member_registration_path ,:class=> 'btn btncls'%>
+    <%else%>
+    <%= link_to 'Logout', destroy_member_session_path, method: :delete ,:class=> 'btn btncls logcls'%></div>
+    <%end%>
+</div>
+<%= yield %>
+
+</body>
+</html>
+<style type="text/css">
+	.btncls
+	{
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-bottom: 8px;
+		padding-top: 15px;
+		color: white;
+		font-size: 14px;
+	}
+	.margincls{
+		margin-left: 30px;
+	}
+	.logcls{
+		margin-right: 10px;
+		margin-left: 700px;
+	}
+</style>

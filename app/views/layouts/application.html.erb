@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testapp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+ </head>
+<body>
+ <div style="height: 47px;background: linear-gradient(#123348,#153343);">
+	<%= link_to 'HOME', '/homepage', method: :get ,:class=> 'btn btncls margincls'%>
+	<% if member_signed_in?%> 
+	<%= link_to 'STUDY-MATERIAL', '/tutorials', method: :get ,:class=> 'btn btncls'%>
+	<%= link_to 'FACULTY','/allfacultydetails', method: :get ,:class=> 'btn btncls'%>
+	<% if current_member.person=='Faculty'%>
+	<%= link_to 'SEND NOTICE','/notice', method: :get ,:class=> 'btn btncls'%>
+	<%= link_to 'UPDATE PROFILE','/updatefaculty', method: :get ,:class=> 'btn btncls'%>
+	<%end%>
+	<%end%>
+	<% if !member_signed_in?%> 
+	<%= link_to 'LOGIN', new_member_session_path ,:class=> 'btn btncls logcls'%>
+    <%= link_to 'SIGNUP', new_member_registration_path ,:class=> 'btn btncls'%>
+    <%else%>
+    <%= link_to 'Logout', destroy_member_session_path, method: :delete ,:class=> 'btn btncls logoutcls'%>
+    <%end%>
+</div>
+
+<%= yield %>
+<div style="height:550px;background: linear-gradient(#123348,#153343)">
+	<h5 style="color: white;padding-top: 50px;font-size: 18px;padding-left: 20px;">ABOUT US</h5>
+	<p style="color: white;font-size: 15px;padding-left: 20px;" class="col-sm-6">eLearning Industry is the largest online community of professionals involved in the eLearning industry. At eLearning Industry you will find the best collection of eLearning articles, eLearning concepts, eLearning software, and eLearning resources based on the Top eLearning Authors. You are more than welcome to Post your eLearning article.
+	<br/>
+	<br/>
+	eLearning Industry is designed to:
+	<br/>
+	<br/>
+	share the knowledge via eLearning articles, tweets, ppp, etc,
+
+	help instructional designers and (or) eLearning professionals to find a project or a temporary basis job,
+
+	to build a safe online community of professionals involved in the eLearning industry.
+	<br/>
+	<br/>
+	<%= link_to 'Contact Us', '/contactadmin', method: :get ,:class=> 'btn btn-primary'%></p>
+	<p style="border-style: solid;color:#000012;margin-top: 341px;margin-left: 40px;margin-right: 40px;"></p>
+	</div>
+</body>
+</html>
+<style type="text/css">
+	.btncls
+	{
+		padding-left: 8px;
+		padding-right: 8px;
+		padding-bottom: 8px;
+		padding-top: 15px;
+		font-color:white ;
+		font-size: 14px;
+	}
+	.margincls{
+		margin-left: 40px;
+	}
+	.logcls{
+		margin-right: 10px;
+		margin-left: 700px;
+	}
+	.logoutcls{
+		margin-right: 10px;
+		margin-left: 600px;
+		align-items: right;
+	}
+	.pinkcls{
+		background-color: #ffb6c1;
+	}
+</style>
+<script type="text/javascript">
+	$(".btncls").hover(function() {
+  $(this).addClass("pinkcls");
+}, function() {
+  $(this).removeClass("pinkcls");
+});
+
+</script>

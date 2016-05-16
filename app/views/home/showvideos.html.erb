@@ -1,0 +1,6 @@
+<b>Image:</b>
+  <%= image_tag(@order.image.url(:small)) %>
+  <b>Document:</b>
+  <%= @order.document_file_name %>
+  <b>Audio:</b>
+  <%= @order.audio_file_name %>

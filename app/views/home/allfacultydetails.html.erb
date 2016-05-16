@@ -1,0 +1,75 @@
+<html>
+<body style="background-color: #FFD993;margin-bottom: 100px;">
+<div class="row">
+<div  align="center" style="margin-left: 10%;background-color: white;margin-top: 5%;margin-bottom: 3%;padding: 5%; " class='col-sm-7'>
+
+<h4 align="left"><b>FACULTY</b></h4>
+<% if !flash[:noticefacultydetails].blank?%>
+<div class="alert alert-success">
+  <%= flash[:noticefaculty] %>
+  </div>
+  <%end%>
+  <table border="0" cellspacing="5" cellpadding="5" class="table" class="table">
+<tr>
+  <th>Name
+  </th>
+  <th>Email
+  </th>
+  <th>Post
+  </th>
+  <th>Department
+  </th>
+  <th>Information
+  </th>
+  <th>Action
+  </th>
+</tr>
+<% @faculties.each do |f|%>
+    
+    <tr>
+    <td><%= f.name%></td>
+    <td><%= f.email%></td>
+    <td><%= f.post%></td>
+    <td><%= f.department%></td>
+    <td><%= f.description%></td>
+    <td><%= link_to 'Contact',"/facultycontact/#{f.id}", method: :get ,:class=> 'btn btn-primary'%></td>
+    </tr>
+    
+ 
+<% end %>
+</table>
+</div>
+ <% if member_signed_in?%>
+    <div class='sidebarcls col-sm-2'>
+    
+        <div>
+          <div class="sidebar_item">
+            <h3 style="color:white">Useful Links</h3>
+            <br/><br/>
+             <a href="http://www.ipu.ac.in/" style="color:white">GGSIPU</a>
+             <br/><br/>
+              <a href="http://www.lbsim.ac.in/" style="color:white">Lbsim official website</a><br/><br/>
+              <a href="http://www.lbsim.ac.in/erp_login.aspx?mpgid=120&pgidtrail=120" style="color:white">ERP login</a><br/><br/>
+              <a href="" style="color:white">Refrences and books</a>
+            
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        </div>
+      <%end%>
+      </div>
+
+</body>
+</html>
+<style type="text/css">
+  .clor{
+    background-color:#FF4500;
+  }
+  .sidebarcls{
+    margin-left: 100px;
+    background: linear-gradient(#6633CC,#CC6600);
+    color:grey;
+    height: 300px;
+    margin-top: 5%;
+  }
+</style>

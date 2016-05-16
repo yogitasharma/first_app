@@ -1,0 +1,54 @@
+ <html>
+<body style="background-color: #DCDCDC;margin-bottom: 100px;">
+
+<div  align="center" style="width:400px;margin-left: 35%;border-style: grooev;border-color:#d3d3d3;background-color: white;padding: 3%;margin-top: 5%;margin-bottom: 3%;">
+<div style="color:red;font-size: 12px;">
+  <%= devise_error_messages! %>
+</div>
+<h2 style="color:blue;">Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <div>
+    <%= f.email_field :email, autofocus: true,:class=> 'form-control'%>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <div>
+    <%= f.password_field :password, autocomplete: "off",:class=> 'form-control' %></div>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <div>
+    <%= f.password_field :password_confirmation, autocomplete: "off",:class=> 'form-control' %></div>
+  </div>
+
+  <div class="field">
+    <%= f.label :person %><br />
+    <div>
+    <%= f.text_field :person,:class=> 'form-control' %>
+    </div>
+  </div>
+<br/>
+  <div class="actions">
+    <%= f.submit "Sign up" ,:class=> 'btn clor'%>
+  </div>
+  
+<% end %>
+
+<%= render "members/shared/links" %>
+</div>
+</body>
+</html>
+<style type="text/css">
+  .clor{
+    background-color:#FF4500;
+  }
+</style>
