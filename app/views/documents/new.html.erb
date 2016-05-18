@@ -1,0 +1,25 @@
+<h3>Upload here</h3>
+
+<% if !@document.errors.empty? %>
+   <div class = "alert alert-error">
+      
+      <ul>
+         <% @document.errors.full_messages.each do |msg| %>
+            <li style="color:red"><%= msg %></li>
+         <% end %>
+      </ul>
+      
+   </div>
+<% end %>
+
+<div class = "well" style="padding: 5%;" >
+   <%= form_for @document, html: { multipart: true } do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <br/><br/>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+      <br/>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>

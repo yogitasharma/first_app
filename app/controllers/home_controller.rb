@@ -7,6 +7,9 @@ class HomeController < ApplicationController
 
   def homepage
     @notices= Notice.last(10)
+   if @notices.blank?
+      flash[:noticemsg]="No Notices found."
+    end
   end
 
   def videos
@@ -20,6 +23,13 @@ class HomeController < ApplicationController
 
   def querypage
   end
+
+  def allnotices
+    @allnotices= Notice.all
+    if @allnotices.blank?
+      flash[:allnoticemsg]="No Notices found."
+    end
+    end
 
   def contactdetails
     if(params[:email].blank?|| params[:name].blank? || params[:message].blank?)

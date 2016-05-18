@@ -10,8 +10,14 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      super
+     if !current_member.nil?
+      if params[:member][:person].blank?
+        flash[:notice]= 'Please enter person type.'
+       else
       current_member.person= params[:member][:person]
       current_member.save
+    end
+    end
    end
 
   # GET /resource/edit

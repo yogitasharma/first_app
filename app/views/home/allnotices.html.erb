@@ -1,0 +1,44 @@
+<html>
+<body>
+<% if member_signed_in?%> 
+	<h5 align="right" style="padding-top: 20px;margin-right: 5px;color:orange"><b>Welcome <%= current_member.email%></b></h5>
+	<%end%>
+	<div class="row" style="background-color:grey;padding: 5%">
+      <% if member_signed_in?%>
+      <% if !flash[:allnoticemsg].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:allnoticemsg] %>
+   </div>
+  <%else%>
+    <div class='col-sm-6' align="center" style="margin-bottom: 2%;margin-top: 2%;margin-left: 20%;background-color: #FFAFAF;padding: 2%;border-radius: 7px;">
+    <b style="font-size: 20px;">Notices</b>
+      <% if !@allnotices.blank? %>
+      	<% @allnotices.each do |n|%>
+      		<div style="background-color: white;border-style: solid;border-color: grey;border-radius: 10px;">
+      		<p><b>Subject: </b><%= n.subject%></p>
+      		<p><b>Date: </b><%= n.created_at%></p>
+      		<p><b>Department: </b><%= n.department%></p>
+      		<% if !n.semester.blank?%>
+      			<p><b>Sem: </b><%= n.semester%></p>	
+      		<%end%>
+      		<p><b>Notice: </b><%= n.description%></p>
+      		<p></p>
+      		</div>
+      		<br/>
+      		<br/>
+      	<%end%>
+      <%end%>
+        </div>
+        <%end%>
+       <%end%>
+      </div>
+</body>
+</html>
+<style type="text/css">
+	.sidebarcls{
+		margin-left: 100px;
+		background: linear-gradient(#6633CC,#CC6600);
+		color:grey;
+		height: 300px;
+	}
+</style>

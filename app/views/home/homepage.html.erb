@@ -3,7 +3,7 @@
 <% if member_signed_in?%> 
 	<h5 align="right" style="padding-top: 20px;margin-right: 5px;color:orange"><b>Welcome <%= current_member.email%></b></h5>
 	<%end%>
-	<div class="row" style="background-color: #00897B;padding: 5%">
+	<div class="row" style="background-color: #00897B;padding: 5%;">
 <div id="content" style="margin-left:10%;background-color: white;width: 60%" class='col-sm-7' >
         <!-- insert the page content here -->
         <h2 >Welcome to e learning portal for lbsim mca students..</h2>
@@ -44,10 +44,18 @@
       </div>
       <div>
       <% if member_signed_in?%>
-      <div class="row" style="padding: 1%;background-color:#FFD993;">
-    <div class='col-sm-6' style="margin-bottom: 2%;margin-top: 2%;margin-left: 10%;background-color: #FFAFAF;padding: 2%;border-radius: 7px;">
+      <div class="row" style="padding: 1%;background-color:grey;">
+       <% if flash[:noticemsg].blank? %>
+      <div align="right" style="margin-right: 10%;"> <%= link_to "show more notices..",'/allnotices',method: :get,:class=> 'btn btn-primary btncls2' %>
+      </div>
+      <%end%>
+    <div class='col-sm-6' align="center" style="margin-bottom: 2%;margin-top: 2%;margin-left: 20%;background-color: #FFAFAF;padding: 2%;border-radius: 7px;">
     <b style="font-size: 20px;">Notices</b>
-      <% if !@notices.blank? %>
+    <% if !flash[:noticemsg].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:noticemsg] %>
+   </div>
+  <%else%>
       	<% @notices.each do |n|%>
       		<div style="background-color: white;border-style: solid;border-color: grey;border-radius: 10px;">
       		<p><b>Subject: </b><%= n.subject%></p>
@@ -63,6 +71,7 @@
       		<br/>
       	<%end%>
       <%end%>
+
         </div>
         </div>
       <%end%>
@@ -76,4 +85,8 @@
 		color:grey;
 		height: 300px;
 	}
+  .btncls2{
+    color:white;
+  }
+ 
 </style>
